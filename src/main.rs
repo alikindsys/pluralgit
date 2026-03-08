@@ -95,10 +95,6 @@ fn commit_msg_hook(path: PathBuf, pk_export: PkExport, repo: Repository) -> io::
         ivec.sort();
 
         if let Some(first_member) = first_member {
-            let _ = repo
-                .config()
-                .unwrap()
-                .set_str("user.name", &first_member.name);
             nlines.push(format!("First-Member: {}", first_member.name));
             ivec.retain(|x| !x.contains(&first_member.id));
         }
