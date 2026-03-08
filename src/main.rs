@@ -94,6 +94,10 @@ fn commit_msg_hook(path: PathBuf, pk_export: PkExport, repo: Repository) -> io::
         let mut ivec: Vec<_> = members.iter().cloned().collect();
         ivec.sort();
 
+        // Add blank line padding.
+        nlines.push(String::new());
+        nlines.push(String::new());
+
         if let Some(first_member) = first_member {
             nlines.push(format!("First-Member: {}", first_member.name));
             ivec.retain(|x| !x.contains(&first_member.id));
